@@ -1,4 +1,4 @@
-public interface Actions { //интерфейс 
+public interface Actions { //интерфейс
 
     void jump(); // прыжок
 
