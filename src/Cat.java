@@ -1,32 +1,31 @@
-public class Cat implements RunJump {
-
+public class Cat implements Actions {
     private String name;
-    private int runDistan;
+    private int runDistance;
     private int jumpHeight;
 
-    public Cat(String name, int runDistan, int jumpHeight) {
+    public Cat(String name, int distance, int jumpHeight) {
         this.name = name;
-        this.runDistan = runDistan;
+        this.runDistance = distance;
         this.jumpHeight = jumpHeight;
     }
 
     @Override
-    public void jump() {
-        System.out.println("Персонаж: " + name + " - прыгнул");
-    }
-
-    @Override
     public void run() {
-        System.out.println("Персонаж: " + name + " - пробежал");
+        System.out.println("Барсик " + name + " пробежал: " + getRunDistance());
     }
 
     @Override
-    public int runDist() {
-        return 0;
+    public void jump() {
+        System.out.println("Барсик " + name + " прыгнул: " + getJumpHeight());
     }
 
     @Override
-    public int jumpHeight() {
-        return 0;
+    public int getRunDistance() { // верни сколько пробежал
+        return this.runDistance;
+    }
+
+    @Override
+    public int getJumpHeight() { // верни сколько прыгнул
+        return this.jumpHeight;
     }
 }

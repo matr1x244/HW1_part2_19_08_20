@@ -8,103 +8,51 @@
 3.Создайте два массива: с участниками и препятствиями, и заставьте всех участников пройти этот набор препятствий.
  */
 
+import java.util.Random;
+
 public class Main {
 
     public static void main(String[] args) {
 
+        int distance = 10; // длинна бега персонажей
+        int heigth = 5; // высота прыжка персонажей
 
-        RunJump[] run = {
-                new Cat("Кот", 5, 10),
-                new Human("Человек", 4, 7),
-                new Robot("Робот", 34, 33)
-        };
+        int distanceRoad = 15; // длинна беговой дорожки
+        int heigthJump = 10; // высота стены
 
-        for(RunJump rrr : run){
-            rrr.run();
-        }
+        Actions[] actions = new Actions[3]; // массив персонажей
 
-        for(RunJump jjj : run){
-            jjj.jump();
-        }
+        actions[0] = new People("", distance, heigth);
+        actions[1] = new Robot("", distance, heigth);
+        actions[2] = new Cat("", distance, heigth);
 
+        Barrier[] barriers = new Barrier[2]; // кол-во препятствий (массив) // ТУТ ЕСТЬ вопрос если место [2] будет [1] - тогда Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 1
+        barriers[0] = new Wall("Стена", heigth);
+        barriers[1] = new Road("Беговая дорожка", distance);
 
-        /*
-        RunJump[] runJump = new RunJump[3];
-        int distance = 5;
-        int jump = 2;
+        for (int i = 0; i < barriers.length; i++) { // проверка массива
+            for (int j = 0; j < barriers.length; j++) {
 
-        runJump[0] = new Human("Человек", distance, jump);
+                distance = distanceRoad; // длинна беговой дорожки
+                heigth = heigthJump; // высота стены
 
-        distance = 6;
-        jump = 3;
-        runJump[1] = new Cat("Кот", distance, jump);
-
-        distance = 7;
-        jump = 4;
-        runJump[2] = new Robot("Робот", distance, jump);
-
-        Obstacle[] obstacle = new Obstacle[5];
-
-        // ?????????
-        boolean Move = false; //????
-        for (int i = 0; i < obstacle.length; i++) {
-            if(Move){
-                obstacle[i] = new Trail("Дорожка" + i, distance);
-            }else{
-                obstacle[i] = new Brick("Стена" + i, distance);
-            }
-        }
-
-        for (int i = 0; i < runJump.length; i++) {
-            boolean result;
-            for (int j = 0; j < obstacle.length; j++) {
-                result = obstacle[j].move(runJump[i]);
-                if (!result){
-                    break;
+                if (distance <= distanceRoad) { // тут создаем стену и дорожку при проверке массива с результатом если (дистанция меньше или равна длинне дорожки) то создай стену
+                        barriers[j] = new Wall("", heigth);
+                    if(heigth <= heigthJump){
+                        barriers[i] = new Road("", distance);
+                    }
                 }
             }
-            
+        }
+            for (int i = 0; i < actions.length; i++) {
+                for (int j = 0; j < barriers.length; j++) {
+                    barriers[j].moving(actions[i]); // тут помог наставник... :( Есть вопрос по поводу этого где можно почитать? более подробно принцип работы
+                    System.out.println("------------");
+                    }
+                }
+            }
         }
 
-         */
-
-
-
-
-
-        /*
-        Cat cat = new Cat("Кот");
-        Human human = new Human("Человек");
-        Robot robot = new Robot("Робот");
-
-
-        /*Либо массив
-        Run[] run = {
-        new cat("Кот"),
-        new human("Человек"),
-        new robot("Робот")
-        };
-
-        for(Run rrr : run){
-        rrr.run();
-        }
-
-         */
-
-         /*
-        cat.run();
-        cat.jump();
-
-        human.run();
-        human.jump();
-
-        robot.run();
-        robot.jump();
-        */
-
-
-    }
-}
 
 
 

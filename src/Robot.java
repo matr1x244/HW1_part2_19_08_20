@@ -1,32 +1,31 @@
-public class Robot implements RunJump {
-
+public class Robot implements Actions {
     private String name;
-    private int runDistan;
+    private int runDistance;
     private int jumpHeight;
 
-    public Robot(String name, int runDistan, int jumpHeight) {
+    public Robot(String name, int distance, int jumpHeight) { // конструктор
         this.name = name;
-        this.runDistan = runDistan;
+        this.runDistance = distance;
         this.jumpHeight = jumpHeight;
     }
 
     @Override
-    public void jump() {
-        System.out.println("Персонаж: " + name + " - прыгнул");
-    }
-
-    @Override
     public void run() {
-        System.out.println("Персонаж: " + name + " - пробежал");
+        System.out.println("Терминатор " + name + " пробежал: " + getRunDistance());
     }
 
     @Override
-    public int runDist() {
-        return 0;
+    public void jump() {
+        System.out.println("Терминатор " + name + " прыгнул: " + getJumpHeight());
     }
 
     @Override
-    public int jumpHeight() {
-        return 0;
+    public int getRunDistance() {
+        return this.runDistance;
+    }
+
+    @Override
+    public int getJumpHeight() {
+        return this.jumpHeight;
     }
 }
